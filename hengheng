@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,19 +14,18 @@
     }
 
     function loadPdfContent() {
-      const pdfContent = getUrlParameter('PDF');
-      if (pdfContent) {
-        document.getElementById('content').innerHTML = pdfContent;
+      const pdfUrl = getUrlParameter('PDF');
+      if (pdfUrl) {
+        const pdfEmbed = `<embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%"/>`;
+        document.getElementById('content').innerHTML = pdfEmbed;
         setTimeout(function () {
           window.print();
-        }, 500); // 1000 milliseconds = 1 second
+        }, 2000); // Adjusted delay
       }
     }
   </script>
 </head>
-
 <body onload="loadPdfContent()">
-  <div id="content"></div>
+  <div id="content" style="height: 100vh;"></div>
 </body>
-
 </html>
